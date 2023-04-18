@@ -1,12 +1,9 @@
-import matplotlib.pyplot as plt
-from matplotlib import font_manager
+import numpy as np
 
-en_font = font_manager.FontProperties(fname='times.ttf')
-x = [1, 2, 3, 4, 5]
-y = [3, 5, 2, 6, 1]
+in_ = np.array([[1, 2, 3.000012, 4.2],
+                [1, 2, 3.1, 4.2]])
+cons = np.zeros((len(in_), 5))
+cons[:, 3] = np.abs(in_[:, 2] - np.round(in_[:, 2])) - 1e-2
+cons[:, 4] = np.abs(in_[:, 3] - np.round(in_[:, 3], 2)) - 1e-5
 
-fig, ax = plt.subplots()
-ax.plot(x, y)
-ax.set_ylabel('$123$/k', fontproperties=en_font, fontsize=18, labelpad=30, rotation=0)
-plt.show()
-
+print(cons)
